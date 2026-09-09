@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Quran Halaqa | Bilal Ahmad Ganie</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8f7;
+            color: #1d2b25;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #0f3d2e;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: #d9c27c;
+        }
+
+        .hero {
+            background: linear-gradient(
+                rgba(15, 61, 46, 0.92),
+                rgba(15, 61, 46, 0.92)
+            );
+            color: white;
+            padding: 90px 7%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            color: #e9f0ec;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            margin: 6px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #d9c27c;
+            color: #173b2e;
+        }
+
+        .btn-secondary {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .section {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            color: #0f3d2e;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .ayah {
+            background: white;
+            max-width: 900px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .arabic {
+            font-size: 34px;
+            direction: rtl;
+            margin-bottom: 20px;
+            color: #0f3d2e;
+        }
+
+        .english {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .urdu {
+            font-size: 19px;
+            direction: rtl;
+            margin-bottom: 10px;
+        }
+
+        .reference {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+        }
+
+        .card-icon {
+            font-size: 30px;
+            color: #0f3d2e;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #0f3d2e;
+            margin-bottom: 10px;
+        }
+
+        .level {
+            display: inline-block;
+            margin-top: 12px;
+            background: #edf5f1;
+            color: #0f3d2e;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .announcement {
+            background: white;
+            max-width: 900px;
+            margin: 15px auto;
+            padding: 20px;
+            border-left: 5px solid #d9c27c;
+            border-radius: 8px;
+        }
+
+        .announcement h3 {
+            color: #0f3d2e;
+            margin-bottom: 5px;
+        }
+
+        .cta {
+            background: #0f3d2e;
+            color: white;
+            text-align: center;
+            padding: 60px 7%;
+        }
+
+        .cta h2 {
+            margin-bottom: 12px;
+            font-size: 30px;
+        }
+
+        footer {
+            background: #09291f;
+            color: #dce7e1;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 65px 5%;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 45px 5%;
+            }
+
+            .arabic {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}" class="logo">
+        Online Quran Halaqa
+    </a>
+
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('courses') }}">Courses</a></li>
+        <li><a href="{{ url_for('schedule') }}">Schedule</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+    </ul>
+</nav>
+
+
+<section class="hero">
+
+    <h1>Online Quran Halaqa</h1>
+
+    <p>
+        Learn the Qur’an, Arabic Grammar, Tafsir and Islamic knowledge
+        through structured online classes with
+        <strong>Teacher Bilal Ahmad Ganie</strong>.
+    </p>
+
+    <a href="{{ url_for('register') }}" class="btn btn-primary">
+        Join the Halaqa
+    </a>
+
+    <a href="{{ url_for('courses') }}" class="btn btn-secondary">
+        Explore Courses
+    </a>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Ayah of the Day</h2>
+        <p>A reminder for the heart and soul</p>
+    </div>
+
+    {% if ayah %}
+
+    <div class="ayah">
+
+        <div class="arabic">
+            {{ ayah.arabic }}
+        </div>
+
+        <div class="english">
+            "{{ ayah.english }}"
+        </div>
+
+        <div class="urdu">
+            {{ ayah.urdu }}
+        </div>
+
+        <div class="reference">
+            {{ ayah.surah }} — {{ ayah.reference }}
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="ayah">
+        <p>No Ayah has been added yet.</p>
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Our Courses</h2>
+        <p>Learn according to your level and goals</p>
+    </div>
+
+    <div class="cards">
+
+        {% for course in courses %}
+
+        <div class="card">
+
+            <div class="card-icon">
+                {{ course.icon }}
+            </div>
+
+            <h3>
+                {{ course.title }}
+            </h3>
+
+            <p>
+                {{ course.description }}
+            </p>
+
+            <span class="level">
+                {{ course.level }}
+            </span>
+
+        </div>
+
+        {% else %}
+
+        <div class="card">
+            <h3>Courses Coming Soon</h3>
+            <p>
+                Course information will be available soon.
+            </p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Latest Announcements</h2>
+        <p>Stay updated with the Halaqa</p>
+    </div>
+
+    {% for announcement in announcements %}
+
+    <div class="announcement">
+
+        <h3>
+            {{ announcement.title }}
+        </h3>
+
+        <p>
+            {{ announcement.body }}
+        </p>
+
+    </div>
+
+    {% else %}
+
+    <div class="announcement">
+        <h3>Welcome</h3>
+        <p>
+            Welcome to the Online Quran Halaqa.
+        </p>
+    </div>
+
+    {% endfor %}
+
+</section>
+
+
+<section class="cta">
+
+    <h2>Begin Your Journey With the Qur’an</h2>
+
+    <p>
+        Join the Online Quran Halaqa and continue your Islamic learning journey.
+    </p>
+
+    <br>
+
+    <a href="{{ url_for('register') }}" class="btn btn-primary">
+        Create Student Account
+    </a>
+
+    <a href="{{ url_for('login') }}" class="btn btn-secondary">
+        Student Login
+    </a>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © {{ year }} Online Quran Halaqa
+    </p>
+
+    <p>
+        Teacher Bilal Ahmad Ganie
+    </p>
+
+</footer>
+
+</body>
+</html>
